@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "713315178861",
+    "project_id": "room-innovation-time-73105",
+    "storage_bucket": "room-innovation-time-73105.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713315178861:android:2d727f4103fa62fa636264",
+        "android_client_info": {
+          "package_name": "com.room_innovation_time"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713315178861-lqm9d7d0p2picvbne8rdt19u2rhnmimr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.room_innovation_time",
+            "certificate_hash": "b4e8d1e9df08fcf22188e5305b7d5294d98795f8"
+          }
+        },
+        {
+          "client_id": "713315178861-hlrbb8cf1huh51rpsvld10mue7r18vqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNYPWJM55cSK0oKQZ3I34CSZdLxG5NDEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713315178861-hlrbb8cf1huh51rpsvld10mue7r18vqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
