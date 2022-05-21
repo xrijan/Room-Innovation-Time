@@ -1,6 +1,7 @@
+import 'package:dev_rijan_room_it/Pages/homepage_items/Explore.dart';
 import 'package:flutter/material.dart';
-
 import '../../firebase_services/auth_controller.dart';
+import 'drawer_appbar/Navigation_drawer.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -10,9 +11,11 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+
   @override
   Widget build(BuildContext context) {
-
+    
+    
     Size size = MediaQuery.of(context).size;
 
     return Padding(
@@ -28,10 +31,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  child: Icon(Icons.sort_rounded),
+                InkWell(
+                  onTap: () {
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (
+                          context) =>  DrawerWidget()),
+                    );
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: Icon(Icons.sort_rounded),
+                  ),
                 ),
                 Container(
                   height: 25,
@@ -45,17 +57,20 @@ class _CustomAppBarState extends State<CustomAppBar> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('City',style: TextStyle(color: Colors.black, fontSize: 18,),),
+                  Text('City',style: TextStyle(color: Colors.black, fontSize: 18,fontFamily: "Nunito"),),
                   SizedBox(height: size.height * 0.01,),
                   // Text('Udaipur',style: TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.bold),),
                   // SizedBox(width: 100,),
                   Row(
                     children: [
-                      Text('Udaipur',style: TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.bold),),
+                      Text('Udaipur',style: TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.bold,fontFamily: "Nunito"),),
                       SizedBox(width: 17,),
                       InkWell(
                         onTap: () {
-                          AuthController.authInstance.signOut();
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (
+                                context) =>  ExploreUdaipur()),
+                          );
                         },
                         child: Container(
                             width: 24,

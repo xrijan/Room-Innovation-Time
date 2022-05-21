@@ -15,7 +15,19 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(),
+           CustomAppBar(),
+           SizedBox(
+             child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(28, 10, 0, 0),
+                  child: Text("Recommended",style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold,fontFamily: "Nunito")),
+                ),
+              ],
+            ),
+          ),
+           SizedBox(height: 10),
+
         ],
       ),
     );

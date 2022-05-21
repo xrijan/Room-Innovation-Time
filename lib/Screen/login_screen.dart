@@ -1,8 +1,6 @@
 import 'package:dev_rijan_room_it/Screen/register_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import '../Pages/home_page.dart';
-import '../Pages/homepage_items/Custom_AppBar.dart';
 import '../Utility/loading_screen.dart';
 import '../firebase_services/auth_controller.dart';
 
@@ -127,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                        onTap: () {
                          Navigator.of(context).push(
                            MaterialPageRoute(builder: (
-                               context) => const HomePage()),
+                               context) => const Loading()),
                          );
                        },
                        child: const Text("Forgot Password", style: TextStyle(
@@ -205,11 +203,13 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
 
-           const SizedBox(height: 69),
+           const SizedBox(height: 59),
           //dialogue
-          Container(
-            // height: 200,
-            child: Text("“Simplicity is the soul of efficiency.”"),
+          SafeArea(
+            child: Container(
+              // height: 200,
+              child: Text("Powered By   “ARRAY”"),
+            ),
           ),
         ],
         ),

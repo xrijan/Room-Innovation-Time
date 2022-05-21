@@ -1,9 +1,10 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dev_rijan_room_it/Pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../Screen/emailverify_screen.dart';
 import '../Screen/login_screen.dart';
-import '../flutter_home.dart';
 import 'firebase_auth.dart';
 
 
@@ -26,7 +27,7 @@ class AuthController extends GetxController {
   _setInitialScreen(User? user) {
 
     if (user != null) {
-      // user is logged and go for verification
+      // user is logged or created then go for verification
       Get.offAll(() =>  EmailVerify());
     } else {
       // user is null as in user is not available or not logged in
@@ -83,3 +84,23 @@ class AuthController extends GetxController {
   }
 }
 
+Future collection() async{
+
+  try{
+      final user = FirebaseAuth.instance.currentUser!;
+      await user.sendEmailVerification();
+     }
+  on FirebaseAuthException catch (e) {
+    // this is solely for the Firebase Auth Exception
+    // for example : password did not match
+    print(e.message);
+
+    Get.snackbar(
+      "Something Went Wrong",
+      e.message!,
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  } catch (e) {
+    print(e.toString());
+  }
+}
