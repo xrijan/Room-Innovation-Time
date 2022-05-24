@@ -1,9 +1,11 @@
 
-import 'package:dev_rijan_room_it/Pages/homepage_items/drawer_appbar/drawer_items/update_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../firebase_services/auth_controller.dart';
+
+import '../../../../firebase_services/auth_controller.dart';
+import 'drawer_items/update_profile.dart';
+
 
 
 

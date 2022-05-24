@@ -1,6 +1,5 @@
 import 'package:dev_rijan_room_it/Pages/homepage_items/Explore.dart';
 import 'package:flutter/material.dart';
-import '../../firebase_services/auth_controller.dart';
 import 'drawer_appbar/Navigation_drawer.dart';
 
 class CustomAppBar extends StatefulWidget {
