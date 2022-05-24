@@ -43,7 +43,6 @@ class EmailVerifyState extends State<EmailVerify> {
     super.dispose();
   }
 
-
   Future sendVerificationEmail() async {
      try{
       final user = FirebaseAuth.instance.currentUser!;
@@ -54,10 +53,7 @@ class EmailVerifyState extends State<EmailVerify> {
 
       await Future.delayed(Duration(seconds: 5));
        setState(() => canResendEmail = true);
-
-
     }
-
     on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match

@@ -1,8 +1,8 @@
 import 'package:dev_rijan_room_it/Screen/register_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import '../Utility/loading_screen.dart';
 import '../firebase_services/auth_controller.dart';
+import 'forgetpassword_screen.dart';
 
 
 
@@ -27,7 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
+      body:
+      SingleChildScrollView(
         child:
         Column(
         children: <Widget>[
@@ -125,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                        onTap: () {
                          Navigator.of(context).push(
                            MaterialPageRoute(builder: (
-                               context) => const Loading()),
+                               context) => const ForgetPassword()),
                          );
                        },
                        child: const Text("Forgot Password", style: TextStyle(

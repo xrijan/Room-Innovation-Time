@@ -1,6 +1,5 @@
-import 'package:dev_rijan_room_it/Pages/home_page.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class ProfileUpdate extends StatefulWidget {
@@ -25,11 +24,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
 
           InkWell(
             onTap:  () {
-
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (
-                    context) =>  HomePage()),
-              );
+              Navigator.pop(context);
             },
               child: Image.asset("assets/icons/left-arrow.png",)),
         ),

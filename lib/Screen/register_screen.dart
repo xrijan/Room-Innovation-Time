@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../firebase_services/auth_controller.dart';
@@ -45,6 +46,22 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title:
+        Text("Register Account",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontFamily: "Nunito"),),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
+          child:
+
+          InkWell(
+              onTap:  () {
+                Navigator.pop(context);
+              },
+              child: Image.asset("assets/icons/left-arrow.png",)),
+        ),
+      ),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
@@ -208,10 +225,10 @@ class _RegisterState extends State<Register> {
                       AuthController.authInstance.register(
                           emailController.text.trim(),
                           passwordController.text.trim());
-                      // final user = User(
-                      //   name: nameController.text,
-                      // );
-                      // createUser(user);
+                      final user = User(
+                        name: nameController.text,
+                      );
+                      createUser(user);
                     },
                   ),
                   // const SizedBox(height: 4.0),
@@ -223,24 +240,24 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-//
-//
-//     Future createUser(User user) async {
-//       final docUser = FirebaseAuth.instance.collection("users").doc();
-//
-//       final json = user.toJson();
-//       await docUser.set(json);
-//     }
-//   }
-//
-// class User {
-//   final String name;
-//
-//   User({
-//     required this.name,
-//   });
-//   Map<String,dynamic> toJson() =>{
-//     "name":name,
-//   };
+
+
+    Future createUser(User user) async {
+      final docUser = FirebaseFirestore.instance.collection("users").doc();
+
+      final json = user.toJson();
+      await docUser.set(json);
+    }
+  }
+
+class User {
+  final String name;
+
+  User({
+    required this.name,
+  });
+  Map<String,dynamic> toJson() =>{
+    "name":name,
+  };
 }
 

@@ -1,4 +1,4 @@
-import 'package:dev_rijan_room_it/Pages/home_page.dart';
+
 import 'package:dev_rijan_room_it/Pages/homepage_items/drawer_appbar/drawer_items/update_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,148 +22,152 @@ class _DrawerWidget extends State<DrawerWidget> {
     const url = 'https://docs.google.com/forms/d/e/1FAIpQLSf5QSn2THXyR7wQM82HNPRL6sQJ1mbRhxxXeboeJWu9VOHZjQ/viewform?usp=sf_link';
     await launch(url);
   }
+  late final  String name = "Rijan";
+  final email = FirebaseAuth.instance.currentUser!.email;
+  static const ImageAvtar = "assets/utility_image/Mrwithmask.jpg";
 
 
   @override
   Widget build(BuildContext context) {
 
-    const name = "Email ID";
-    final email = FirebaseAuth.instance.currentUser!.email;
-    const Image = "assets/utility_image/cute-g85c8e3e53_1920.png";
+    return  StreamBuilder<Object>(
+      stream: null,
+      builder: (context, snapshot) {
+        return Drawer(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20,0,30,0),
+            child: Material(
+              color: Colors.transparent,
+              child: ListView(
+                children: <Widget>[
+                  buildHeader(
+                    Image: ImageAvtar,
+                    name: name,
+                    email : email,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20,0,20,0),
+                    child: const Divider(color: Colors.black,),
+                  ),
+                  const SizedBox(height: 35),
 
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
 
-    return  Drawer(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20,0,30,0),
-        child: Material(
-          color: Colors.transparent,
-          child: ListView(
-            children: <Widget>[
-              buildHeader(
-
-                Image: Image,
-                name: name,
-                email : email,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20,0,20,0),
-                child: const Divider(color: Colors.black,),
-              ),
-              const SizedBox(height: 35),
-
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-
-                      text: "Home",
-                      icon: Icons.home,
-                      onClicked: () => selectedItem(context,1),
+                          text: "Home",
+                          icon: Icons.home,
+                          onClicked: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-                      text: "Rent",
-                      icon: Icons.apartment,
-                      onClicked: _launchURL,
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Rent",
+                          icon: Icons.apartment,
+                          onClicked: _launchURL,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
 
-              const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-                      text: "Notification",
-                      icon: Icons.notifications,
-                      onClicked: () => selectedItem(context,1),
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Notification",
+                          icon: Icons.notifications,
+                          onClicked: () => selectedItem(context,0),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              const SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-                      text: "Agreement",
-                      icon: Icons.description,
-                      onClicked: () => selectedItem(context,2),
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Agreement",
+                          icon: Icons.description,
+                          onClicked: () => selectedItem(context,1),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              const SizedBox(height: 67),
+                  const SizedBox(height: 67),
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20,0,20,0),
-                child: const Divider(color: Colors.black,),
-              ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20,0,20,0),
+                    child: const Divider(color: Colors.black,),
+                  ),
 
-              const SizedBox(height: 80),
+                  const SizedBox(height: 80),
 
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-                      text: "Check Updates",
-                      icon: Icons.ad_units_outlined,
-                      onClicked: () => selectedItem(context,3),
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Check Updates",
+                          icon: Icons.ad_units_outlined,
+                          onClicked: () => selectedItem(context,2),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-                      text: "Settings",
-                      icon: Icons.settings,
-                      onClicked: () => selectedItem(context,3),
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Settings",
+                          icon: Icons.settings,
+                          onClicked: () => selectedItem(context,3),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              Container(
-                padding: padding,
-                child: Column(
-                  children: [
-                    buildMenuItem(
-                      text: "Log Out",
-                      icon: Icons.logout,
-                      onClicked: () {
-                        AuthController.authInstance.signOut();
-                      },
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Log Out",
+                          icon: Icons.logout,
+                          onClicked: () {
+                            AuthController.authInstance.signOut();
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
 
   }
@@ -208,7 +212,9 @@ class _DrawerWidget extends State<DrawerWidget> {
              },
             // backgroundColor: Colors.transparent,
             child: Container(
-                child: Icon(Icons.exit_to_app, color: Colors.black)),
+                child: Icon(Icons.perm_contact_cal_outlined, color: Colors.black)
+
+            ),
           )
         ],
       ),
