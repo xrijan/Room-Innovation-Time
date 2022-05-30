@@ -1,11 +1,10 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../firebase_services/auth_controller.dart';
 import 'drawer_items/update_profile.dart';
-
 
 
 
@@ -27,6 +26,32 @@ class _DrawerWidget extends State<DrawerWidget> {
   late final  String name = "Rijan";
   final email = FirebaseAuth.instance.currentUser!.email;
   static const ImageAvtar = "assets/utility_image/Mrwithmask.jpg";
+
+  void _showlogoutDialog(){
+    showDialog(
+        context: context,
+        builder: (context){
+          return CupertinoAlertDialog(
+           title: Text("Logout"),
+            content: Text("See you again!"),
+            actions: [
+              MaterialButton(
+                  onPressed: (){
+                    AuthController.authInstance.signOut();
+                  },
+                child: Text("Ok"),
+              ),
+              MaterialButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                child: Text("Cancel"),
+              ),
+            ],
+
+          );
+        });
+  }
 
 
   @override
@@ -157,9 +182,10 @@ class _DrawerWidget extends State<DrawerWidget> {
                         buildMenuItem(
                           text: "Log Out",
                           icon: Icons.logout,
-                          onClicked: () {
-                            AuthController.authInstance.signOut();
-                          },
+                          onClicked: _showlogoutDialog,
+                          // onClicked: () {
+                          //   AuthController.authInstance.signOut();
+                          // },
                         ),
                       ],
                     ),
