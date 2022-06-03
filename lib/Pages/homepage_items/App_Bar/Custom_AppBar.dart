@@ -1,3 +1,4 @@
+import 'package:dev_rijan_room_it/Data/DataSearch.dart';
 import 'package:dev_rijan_room_it/Pages/homepage_items/Explore.dart';
 import 'package:flutter/material.dart';
 import 'drawer_appbar/Navigation_drawer.dart';
@@ -18,9 +19,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 32, left: 20.0, right: 27.0,bottom: 0),
+      padding: const EdgeInsets.only(top: 38, left: 20.0, right: 27.0,bottom: 0),
       child: Container(
-        height: size.height * 0.23,
+        height: size.height * 0.20,
         child:
 
         Column(
@@ -32,7 +33,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
               children: [
                 InkWell(
                   onTap: () {
-
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (
                           context) =>  DrawerWidget()),
@@ -44,10 +44,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     child: Icon(Icons.sort_rounded),
                   ),
                 ),
-                Container(
-                  height: 25,
-                  width: 50,
-                  child: Image.asset("assets/icons/love.png"),
+                InkWell(
+                  onTap: (){
+                    showSearch(context: context, delegate: DataSearch());
+                  },
+                  child: Container(
+                    height: 25,
+                    width: 50,
+                    child: Image.asset("assets/icons/search.png"),
+                  ),
                 ),
               ],
             ),
@@ -73,12 +78,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         },
                         child: Container(
                             width: 24,
-                            child: Image.asset("assets/icons/explore.png")),
+                            child: Image.asset("assets/icons/adventurer.png")),
                       ),
                     ],
                   )
-
-
                 ],),),
                Divider(
                  color: Colors.blueGrey,
