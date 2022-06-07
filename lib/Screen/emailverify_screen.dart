@@ -86,102 +86,112 @@ class EmailVerifyState extends State<EmailVerify> {
       ? HomePage()
       :
          Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child:
-        Column(
-          children: <Widget>[
-            //Lottie
-            SizedBox(height: 50,),
-
-            Container(
-              height:300,
-              width: 410,
-              child: Lottie.asset("assets/lottie/72126-email-verification.json",
-                width: 200,
-                height: 400,
-              ),
-            ),
-
-            Container(
-              child: Text("The Verification Email has been sent to your given Email.",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black,fontFamily: "Nunito")),
-            ),
-            //Email,Password and More..
-                  const SizedBox(height: 40.0),
+            resizeToAvoidBottomInset: true,
+            body: SingleChildScrollView(
+              child: SafeArea(
+                child: Column(
+                children: <Widget>[
+                  //Lottie
+                  SizedBox(height: 50,),
+    
+                  Container(
+                    height:300,
+                    width: 410,
+                    child: Lottie.asset("assets/lottie/72126-email-verification.json",
+                      width: 200,
+                      height: 400,
+                    ),
+                  ),
+    
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("The Verification Email has been sent to your given Email.\n"
+                          "\n"
+                          "Suggestions:\n"
+                          "1. Kindly check your email for verification.\n"
+                          "2. Not found ? Check your spam folder. \n"
+                          "3. You can still verify by login after cancellation. \n"
+                          "4. Any other issue contact [roomit.dev@gmail.com].",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black,fontFamily: "Nunito")),
+                    ),
+                  ),
+                  //Email,Password and More..
+                        const SizedBox(height: 40.0),
 
             Padding(
-              padding: const EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-              child: Container(
-                child: Column(
-                  children: [
-                    InkWell(
-                            child: SizedBox(
-                              height: 60.0,
-                              child: Material(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  shadowColor: Colors.black,
-                                  color: Colors.black,
-                                  elevation: 7.0,
-                                  child:  Center(
-                                    child: isLoading?  Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: const [
-                                        Text("Wait a Second..",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white,fontFamily: "Nunito")),
-                                        SizedBox(width: 20,),
-                                        CircularProgressIndicator(color: Colors.white,strokeWidth: 4,),
-                                      ],
+                padding: const EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+                child: Container(
+                  child: Column(
+                    children: [
+                      InkWell(
+                              child: SizedBox(
+                                height: 60.0,
+                                child: Material(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    shadowColor: Colors.black,
+                                    color: Colors.black,
+                                    elevation: 7.0,
+                                    child:  Center(
+                                      child: isLoading?  Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: const [
+                                          Text("Wait a Second..",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white,fontFamily: "Nunito")),
+                                          SizedBox(width: 20,),
+                                          CircularProgressIndicator(color: Colors.white,strokeWidth: 4,),
+                                        ],
+                                      )
+                                          :const Text("Resend Email", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontFamily: "Nunito"),),
                                     )
-                                        :const Text("Resend Email", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontFamily: "Nunito"),),
-                                  )
-                              ),
-                            ),
-                            onTap:
-                            canResendEmail ? sendVerificationEmail : null,
-                          ),
-                    SizedBox(height: 30,),
-                    InkWell(
-                      child: Container(
-                        height: 60.0,
-                        color: Colors.transparent,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black,
-                                  style: BorderStyle.solid,
-                                  width: 1.0
-                              ),
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(20.0)
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:  <Widget>[
-                              Center(
-
-                                child: Container(
-                                  alignment: const Alignment(1.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 2.0, left: 20.0),
-                                    child: Text("Cancel",
-                                      style: TextStyle(fontWeight: FontWeight.bold,
-                                          fontFamily: "Nunito"),),
-                                  ),
                                 ),
-                              )
-                            ],
+                              ),
+                              onTap:
+                              canResendEmail ? sendVerificationEmail : null,
+                            ),
+                      SizedBox(height: 30,),
+                      InkWell(
+                        child: Container(
+                          height: 60.0,
+                          color: Colors.transparent,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black,
+                                    style: BorderStyle.solid,
+                                    width: 1.0
+                                ),
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(20.0)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  <Widget>[
+                                Center(
+
+                                  child: Container(
+                                    alignment: const Alignment(1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 2.0, left: 20.0),
+                                      child: Text("Cancel",
+                                        style: TextStyle(fontWeight: FontWeight.bold,
+                                            fontFamily: "Nunito"),),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          AuthController.authInstance.signOut();
+                        },
                       ),
-                      onTap: () {
-                        AuthController.authInstance.signOut();
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
             ),
           ],
         ),
+              ),
       )
   );
 

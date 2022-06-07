@@ -15,13 +15,14 @@ class AppSettings extends StatefulWidget {
 class _AppSettingsState extends State<AppSettings> {
   late bool _dark;
   launchurl() async{
-    launch('mailto:tanishqsharma27dec@gmail.com?subject=Developer support%20');
+    launch('mailto:roomit.dev@gmail.com?subject=Developer support%20');
   }
   launchprivacy() async{
-    launch('https://docs.google.com/document/d/1Cr3JwMs69UmtvaoqOa2ejOgnBz8R0s9I2cm8vXJFiQE/edit');
+    launch('https://docs.google.com/document/d/10vgvQQz9cNM2u_Eap7Xt4DiqYr1SpOgWEsyzf_MFkiU/edit');
   }
+
   launchterms() async{
-    launch('https://xtits.com');
+    launch('https://docs.google.com/document/d/10vgvQQz9cNM2u_Eap7Xt4DiqYr1SpOgWEsyzf_MFkiU/edit');
   }
 
   bool val = false;
@@ -72,6 +73,16 @@ class _AppSettingsState extends State<AppSettings> {
       child: Scaffold(
         backgroundColor: _dark ? null : Colors.grey.shade200,
         appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
+            child:
+
+            InkWell(
+                onTap:  () {
+                  Navigator.pop(context);
+                },
+                child: Image.asset("assets/icons/left-arrow.png",)),
+          ),
           elevation: 0,
           brightness: _getBrightness(),
           iconTheme: IconThemeData(color: _dark ? Colors.white : Colors.black),
@@ -82,16 +93,12 @@ class _AppSettingsState extends State<AppSettings> {
           ),
           actions: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(14.0),
               child: InkWell(
-                onTap: (){
-                  setState(() {
-                    _dark = !_dark;
-                  });
-                },
+                onTap: _showlogoutDialog,
                 child: Container(
-                  width: 30,
-                  child: Image.asset("assets/icons/theme.png"),
+                  width: 20,
+                  child: Image.asset("assets/icons/logout.png"),
                 ),
               ),
             ),
@@ -158,35 +165,6 @@ class _AppSettingsState extends State<AppSettings> {
                     ),
                   ),
                 ],
-              ),
-            ),
-            Positioned(
-              top: 550,
-              right: 130,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 150,
-                  height: 50,
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      onSurface: Colors.blueGrey,
-                      shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
-                      ),
-
-                    ),
-                    onPressed: _showlogoutDialog,
-
-                    child:  Center(
-                    child:  Text("Log Out", style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Nunito"),),
-                  ),),
-                ),
               ),
             ),
 

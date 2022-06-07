@@ -31,7 +31,6 @@ class _DrawerWidget extends State<DrawerWidget> {
   final email = FirebaseAuth.instance.currentUser!.email;
   static const ImageAvtar = "assets/utility_image/Mrwithmask.jpg";
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -71,23 +70,6 @@ class _DrawerWidget extends State<DrawerWidget> {
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 16),
-
-                  Container(
-                    padding: padding,
-                    child: Column(
-                      children: [
-                        buildMenuItem(
-                          text: "Profile",
-                          // Image: Image(image: AssetImage("assets/icons/help.png")),
-                          icon: Icons.account_circle_outlined,
-                          onClicked: () => selectedItem(context,1),
-                        ),
-                      ],
-                    ),
-                  ),
-
                   const SizedBox(height: 16),
 
                   Container(
@@ -129,8 +111,24 @@ class _DrawerWidget extends State<DrawerWidget> {
                         buildMenuItem(
                           text: "Services",
                           // Image: Image(image: AssetImage("assets/icons/help.png")),
-                          icon: Icons.electric_rickshaw_sharp,
+                          icon: Icons.cleaning_services,
                           onClicked: () => selectedItem(context,3),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Container(
+                    padding: padding,
+                    child: Column(
+                      children: [
+                        buildMenuItem(
+                          text: "Agreement",
+                          // Image: Image(image: AssetImage("assets/icons/help.png")),
+                          icon: Icons.feed_outlined,
+                          onClicked: () => selectedItem(context,1),
                         ),
                       ],
                     ),
@@ -221,6 +219,11 @@ class _DrawerWidget extends State<DrawerWidget> {
         ],
       ),
     ),
+    onTap: (){
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const ProfileUpdate(),
+      ));
+    },
   );
 
   Widget buildMenuItem(

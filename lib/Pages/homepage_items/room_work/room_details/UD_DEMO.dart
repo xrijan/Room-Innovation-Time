@@ -41,16 +41,7 @@ class _UD_DemoState extends State<UD_Demo> {
                 Row(
                   children: <Widget>[
                     const SizedBox(width: 16.0),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                        horizontal: 16.0,
-                      ),
-                      decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(20.0)),
-                      child: Text("Not rated",
-                        style: TextStyle(color: Colors.white, fontSize: 13.0,fontFamily: "Nunito"),
-                      ),
-                    ),
+                    SizedBox(height: 10,),
                     Spacer(),
                   ],
                 ),
