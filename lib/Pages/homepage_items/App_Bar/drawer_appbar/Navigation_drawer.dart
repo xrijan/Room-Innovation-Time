@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../Utility/loading_screen.dart';
 import 'drawer_items/about_us.dart';
+import 'drawer_items/agreement.dart';
 import 'drawer_items/services.dart';
 import 'drawer_items/settings.dart';
 import 'drawer_items/update_profile.dart';
@@ -27,7 +28,7 @@ class _DrawerWidget extends State<DrawerWidget> {
     const url = 'https://docs.google.com/forms/d/e/1FAIpQLSf5QSn2THXyR7wQM82HNPRL6sQJ1mbRhxxXeboeJWu9VOHZjQ/viewform?usp=sf_link';
     await launch(url);
   }
-  late final  String name = "Rijan";
+  late final  String name = "Enrico";
   final email = FirebaseAuth.instance.currentUser!.email;
   static const ImageAvtar = "assets/utility_image/Mrwithmask.jpg";
 
@@ -128,7 +129,7 @@ class _DrawerWidget extends State<DrawerWidget> {
                           text: "Agreement",
                           // Image: Image(image: AssetImage("assets/icons/help.png")),
                           icon: Icons.feed_outlined,
-                          onClicked: () => selectedItem(context,1),
+                          onClicked: () => selectedItem(context,7),
                         ),
                       ],
                     ),
@@ -226,6 +227,8 @@ class _DrawerWidget extends State<DrawerWidget> {
     },
   );
 
+
+
   Widget buildMenuItem(
       {
         required String text,
@@ -280,12 +283,13 @@ class _DrawerWidget extends State<DrawerWidget> {
         ));
         break;
 
-
-
+      case 7:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>  RoomIT_agreement(),
+        ));
+        break;
     }
-
   }
-
 }
 
 

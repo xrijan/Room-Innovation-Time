@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -10,6 +11,12 @@ class ProfileUpdate extends StatefulWidget {
 }
 
 class _ProfileUpdateState extends State<ProfileUpdate> {
+
+  final  name = "Enrico";
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+  final email = FirebaseAuth.instance.currentUser!.email;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +44,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
           },
           child: ListView(
             children: [
-              Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 15,
-              ),
+
               Center(
                 child: Stack(
                   children: [
@@ -66,6 +67,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                               fit: BoxFit.cover,
                               image: AssetImage("assets/utility_image/Mrwithmask.jpg") )),
                     ),
+                    //uploading the avtar
+                    //
                     // Positioned(
                     //     bottom: 0,
                     //     right: 0,
@@ -88,6 +91,47 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   ],
                 ),
               ),
+
+              SizedBox(height: 30,),
+              Container(
+                height: 40,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      child: Text("Name : ",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontFamily: "Nunito",fontSize: 20),),
+                    ),
+                    Text(name,style: TextStyle(color: Colors.black, fontFamily: "Nunito"),),
+                  ],
+                ),
+              ),
+
+              Container(
+                height: 40,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      child: Text("User Id : ",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontFamily: "Nunito",fontSize: 20),),
+                    ),
+                    Text(uid ,style: TextStyle(color: Colors.black, fontFamily: "Nunito"),),
+                  ],
+                ),
+              ),
+              Container(
+                height: 40,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      child: Text("Email : ",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontFamily: "Nunito",fontSize: 20),),
+                    ),
+                    Text(email!,style: TextStyle(color: Colors.black, fontFamily: "Nunito"),),
+                  ],
+                ),
+              ),
+
+              // Container(
+              //   height: 40,
+              //   child: Text(creationTimeString,style: TextStyle(color: Colors.black, fontFamily: "Nunito"),),
+              // ),
             ],
           ),
         ),

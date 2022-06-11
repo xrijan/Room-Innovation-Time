@@ -9,7 +9,7 @@ class UD_Demo extends StatefulWidget {
 }
 
 class _UD_DemoState extends State<UD_Demo> {
-  final String image = "assets/images/rooms/1056541.jpg";
+  final String image = "assets/demo_rooms/1056541.jpg";
 
   _launchURL() async {
     const url = 'https://www.google.com/maps/d/edit?mid=1MZwweJnfKuda_dQGKyu-Z_2wBG9QITM&usp=sharing';

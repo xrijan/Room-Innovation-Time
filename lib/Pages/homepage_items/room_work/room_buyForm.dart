@@ -12,6 +12,7 @@ class BookForms extends StatefulWidget {
 
 class _BookFormsState extends State<BookForms> {
 
+  final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final numberController = TextEditingController();
@@ -45,79 +46,147 @@ class _BookFormsState extends State<BookForms> {
         child: Column(
           children: [
             Container(
-              height: 500,
+              height: 600,
               padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-              child: Column(
-                children: <Widget>[
-                  //Name
-                  TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(labelText: "Name / As per AddharCard",
-                        labelStyle: TextStyle(fontFamily: "Nunito",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)
-                        )
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[
+                    //Name
+                    TextFormField(
+                      controller: nameController,
+                      decoration: InputDecoration(labelText: "Name / As per AddharCard",
+                          labelStyle: TextStyle(fontFamily: "Nunito",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)
+                          )
+                      ),
+                      validator :(value){
+                        if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                          return "Name is required";
+                        }
+                        else{
+                          return null;
+                        }
+                      },
                     ),
-                  ),
-                  SizedBox(height: 30,),
-                  //Email
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(labelText: "Login Email",
-                        labelStyle: TextStyle(fontFamily: "Nunito",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)
-                        )
-                    ),
-                  ),
-                  SizedBox(height: 30,),
-                  //Number
-                  TextField(
-                    controller: numberController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: "Contact Number",
 
-                        labelStyle: TextStyle(fontFamily: "Nunito",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)
-                        )
+
+                    SizedBox(height: 30,),
+                    //Email
+                    TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(labelText: "Login Email",
+                          labelStyle: TextStyle(fontFamily: "Nunito",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)
+                          )
+                      ),
+
+                      validator: (value){
+                        if(value!.isEmpty)
+                        {
+                          return 'Email is required.';
+                        }
+                        if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)){
+                          return 'Please Enter a valid Email';
+                        }
+                        else{
+                          return null;
+                        }
+
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  //Room Code
-                  TextField(
-                    controller: RoomCodeController,
-                    decoration: InputDecoration(labelText: "Room Code",
-                        hintText: "#UD-27000",
-                        labelStyle: TextStyle(fontFamily: "Nunito",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)
-                        )
+                    SizedBox(height: 30,),
+                    //Number
+                    TextFormField(
+                      maxLength: 10,
+                      controller: numberController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(labelText: "Contact Number", labelStyle: TextStyle(fontFamily: "Nunito", fontWeight: FontWeight.bold, color: Colors.black),
+                          prefix: Padding( padding: EdgeInsets.all(4),
+                            child: Text('+91'),),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)
+                          )
+                      ),
+
+                      validator :(value){
+                        if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)){
+                          return "Phone Number is required";
+                        }
+                        else{
+                          return null;
+                        }
+                      },
                     ),
-                  ),
-                  SizedBox(height: 30,),
-                    //price
-                  TextField(
-                    controller: priceController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: "Bid Price (Rs.)",
-                        labelStyle: TextStyle(fontFamily: "Nunito",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)
-                        )
+                    const SizedBox(height: 30),
+                    //Room Code
+                    TextFormField(
+                      maxLength: 8,
+                      controller: RoomCodeController,
+                      decoration: InputDecoration(labelText: "Room Code",
+                          hintText: "#UD-27000",
+                          labelStyle: TextStyle(fontFamily: "Nunito",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)
+                          )
+                      ),
+
+                      validator: (value){
+                        if(value!.isEmpty)
+                        {
+                          return 'Room Code is required.';
+                        }
+                        if(!RegExp("^[U,D]+-[0-9]{5}").hasMatch(value)){
+                          return 'Please Enter a valid code';
+                        }
+                        else{
+                          return null;
+                        }
+
+                      },
+
+
+
                     ),
-                  ),
-                ],
+                    SizedBox(height: 30,),
+                      //price
+                    TextFormField(
+                      maxLength: 5,
+                      controller: priceController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(labelText: "Bid Price",
+                          labelStyle: TextStyle(fontFamily: "Nunito",
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+
+                          prefix: Padding( padding: EdgeInsets.all(4),
+                            child: Text('₹'),),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)
+                          )
+                      ),
+
+                      validator :(value){
+                        if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)){
+                          return "Please Entre";
+                        }
+                        else{
+                          return null;
+                        }
+                      },
+
+
+                    ),
+                  ],
+                ),
               ),
             ),
             // Padding(
@@ -175,20 +244,23 @@ class _BookFormsState extends State<BookForms> {
                      ),
                     onPressed: isButtonActive ? () {
 
-                      setState(()=> isButtonActive=false);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Booking Under Review"))
-                      );
-                      final user = User(
-                        name: nameController.text,
-                        email: emailController.text,
-                        number: numberController.text,
-                        RoomCode: RoomCodeController.text,
-                        BidPrice: priceController.text,
+                      if(formKey.currentState!.validate()) {
+                        setState(() => isButtonActive = false);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Booking Under Review"))
+                        );
+                        final user = User(
+                          name: nameController.text,
+                          email: emailController.text,
+                          number: numberController.text,
+                          RoomCode: RoomCodeController.text,
+                          BidPrice: priceController.text,
 
-                      );
-                      createUser(user);
-                    }:null,
+                        );
+                        createUser(user);
+                      }
+                    }
+                    :null,
 
                     child: Center(
                       child:  Text("Book Now", style: TextStyle(

@@ -41,7 +41,7 @@ class _RoomsListState extends State<RoomsList> {
                   Stack(
                     children: [
                       Ink.image(
-                        image: const AssetImage("assets/images/rooms/1056541.jpg"),
+                        image: const AssetImage("assets/demo_rooms/1056541.jpg"),
                         child: InkWell(
                           onTap: () {
                             Navigator.of(context).push(

@@ -16,8 +16,6 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
 
   final formKey = GlobalKey<FormState>();
-  String name="";
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
@@ -49,10 +47,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-
-    // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      // key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Register Account",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontFamily: "Nunito"),),
         backgroundColor: Colors.white,
@@ -99,7 +94,7 @@ class _RegisterState extends State<Register> {
                             )
                         ),
                        validator :(value){
-                          if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value!)){
+                          if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
                             return "Name is required";
                           }
                           else{
@@ -125,7 +120,7 @@ class _RegisterState extends State<Register> {
                         ),
 
                         validator :(value){
-                          if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value!)){
+                          if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)){
                             return "Phone Number is required";
                           }
                           else{

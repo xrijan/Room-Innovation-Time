@@ -30,8 +30,10 @@ class EmailVerifyState extends State<EmailVerify> {
     if (!isEmailVerified) {
       sendVerificationEmail();
 
+
+
       timer = Timer.periodic(
-        Duration(seconds: 3),
+        Duration(seconds: 20),
           (_) => checkEmailVerified(),
       );
     }
@@ -145,7 +147,7 @@ class EmailVerifyState extends State<EmailVerify> {
                                 ),
                               ),
                               onTap:
-                              canResendEmail ? sendVerificationEmail : null,
+                              sendVerificationEmail,
                             ),
                       SizedBox(height: 30,),
                       InkWell(

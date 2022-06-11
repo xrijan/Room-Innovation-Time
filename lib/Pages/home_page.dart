@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(28, 10, 0, 0),
-                    child: Text("We are out of Rooms",style: TextStyle(color: Colors.white12, fontSize: 20, fontWeight: FontWeight.bold,fontFamily: "Nunito")),
+                    child: Text("We are out of Rooms",style: TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.bold,fontFamily: "Nunito")),
                   ),
                 ],
               ),
