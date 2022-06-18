@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../firebase_services/firebase_storage.dart';
 import '../room_buyForm.dart';
 
 class UD_Demo extends StatefulWidget {
@@ -9,7 +10,7 @@ class UD_Demo extends StatefulWidget {
 }
 
 class _UD_DemoState extends State<UD_Demo> {
-  final String image = "assets/demo_rooms/1056541.jpg";
+
 
   _launchURL() async {
     const url = 'https://www.google.com/maps/d/edit?mid=1MZwweJnfKuda_dQGKyu-Z_2wBG9QITM&usp=sharing';
@@ -19,14 +20,37 @@ class _UD_DemoState extends State<UD_Demo> {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-              foregroundDecoration: BoxDecoration(color: Colors.black26),
-              height: 400,
-              child: Image.asset(image, fit: BoxFit.cover)
+          FutureBuilder(
+              future: storage.downloadURL("demo_anime-room.jpg"),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if(snapshot.connectionState == ConnectionState.done && snapshot.hasData)
+                {
+                  return Container(
+                      foregroundDecoration: BoxDecoration(color: Colors.black26),
+                      height: 400,
+                      child: Image.network(snapshot.data!,fit: BoxFit.cover),
+                  );
+                }
+                if(snapshot.connectionState == ConnectionState.waiting ){
+                  return CircularProgressIndicator();
+
+                }
+                else if(!snapshot.hasData){
+                  print("Has no data");
+                }
+                return Container();
+              }
+
           ),
+          // Container(
+          //     foregroundDecoration: BoxDecoration(color: Colors.black26),
+          //     height: 400,
+          //     child: Image.asset(image, fit: BoxFit.cover)
+          // ),
 
           SingleChildScrollView(
             padding: const EdgeInsets.only(top: 16.0,bottom: 20.0),

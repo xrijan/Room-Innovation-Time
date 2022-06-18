@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../Screen/emailverify_screen.dart';
 import '../Screen/login_screen.dart';
+import '../test.dart';
 import 'firebase_auth.dart';
 
 
