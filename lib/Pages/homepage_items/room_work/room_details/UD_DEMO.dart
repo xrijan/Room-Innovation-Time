@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../firebase_services/firebase_storage.dart';
 import '../room_buyForm.dart';
@@ -21,26 +22,26 @@ class _UD_DemoState extends State<UD_Demo> {
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
           FutureBuilder(
-              future: storage.downloadURL("demo_anime-room.jpg"),
+              future: storage.downloadURL("Udaipur Rooms","demo_anime-room.jpg"),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                 if(snapshot.connectionState == ConnectionState.done && snapshot.hasData)
                 {
                   return Container(
-                      foregroundDecoration: BoxDecoration(color: Colors.black26),
-                      height: 400,
+                       foregroundDecoration: BoxDecoration(color: Colors.black26),
+                       height: 350,
                       child: Image.network(snapshot.data!,fit: BoxFit.cover),
                   );
                 }
-                if(snapshot.connectionState == ConnectionState.waiting ){
-                  return CircularProgressIndicator();
-
-                }
-                else if(!snapshot.hasData){
-                  print("Has no data");
+                if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData ){
+                  return SpinKitFadingFour(
+                    size: 40,
+                    color: Colors.black,
+                  );
                 }
                 return Container();
               }
@@ -53,14 +54,14 @@ class _UD_DemoState extends State<UD_Demo> {
           // ),
 
           SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 16.0,bottom: 20.0),
+              physics : ClampingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 250),
+                const SizedBox(height: 200),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal:16.0),
-                  child: Text("Lux Room\nUdaipur", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold,fontFamily: "Nunito"),),
+                  child: Text("Lux Room\nUdaipur", style: TextStyle(color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.bold,fontFamily: "Nunito"),),
                 ),
                 Row(
                   children: <Widget>[
